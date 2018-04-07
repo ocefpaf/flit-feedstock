@@ -1,22 +1,18 @@
-{% set name = "flit" %}
 {% set version = "1.0" %}
-{% set wheel_tag = "py3" %}
-{% set fn = "{}-{}-{}-none-any.whl".format(name, version, wheel_tag) %}
-{% set sha256 = "5eba92b254f198e534855919c1596d68bb46a7ee2adab60037df6268672dba38" %}
-{% set build = 1 %}
+{% set sha256 = "95b8577b2232da39ee14ae237575b7a85afeeabc1e87f4a19485fac34f85aa89" %}
 
 package:
-  name: {{ name }}
+  name: flit
   version: {{ version }}
 
 source:
-  fn: {{ fn }}
-  url: https://pypi.io/packages/{{ wheel_tag }}/{{ name[0] }}/{{ name }}/{{ fn }}
+  fn: flit-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/f/flit/flit-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   number: 0
-  script: pip install --no-deps {{ fn }}
+  script: python -m flit install --deps=none
   skip: True  # [py2k]
   entry_points:
     - flit = flit:main
@@ -25,6 +21,8 @@ requirements:
   build:
     - python
     - pip
+    - docutils
+    - requests
   run:
     - python
     - docutils

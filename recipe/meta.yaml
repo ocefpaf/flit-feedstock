@@ -23,6 +23,8 @@ requirements:
     - pip
     - docutils
     - requests
+    - pytoml
+    - zipfile36  # [py<36]
   run:
     - python
     - docutils

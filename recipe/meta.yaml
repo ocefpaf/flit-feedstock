@@ -1,5 +1,5 @@
-{% set version = "1.0" %}
-{% set sha256 = "95b8577b2232da39ee14ae237575b7a85afeeabc1e87f4a19485fac34f85aa89" %}
+{% set version = "1.1" %}
+{% set sha256 = "da823d4acae9bda42dcc0c7ab1d9be475a8a47aae5fd6dde63841d9f430ccb2f" %}
 
 package:
   name: flit

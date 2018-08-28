@@ -1,24 +1,23 @@
 {% set version = "1.1" %}
-{% set sha256 = "da823d4acae9bda42dcc0c7ab1d9be475a8a47aae5fd6dde63841d9f430ccb2f" %}
 
 package:
   name: flit
   version: {{ version }}
 
 source:
-  fn: flit-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/f/flit/flit-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: da823d4acae9bda42dcc0c7ab1d9be475a8a47aae5fd6dde63841d9f430ccb2f
 
 build:
-  number: 0
-  script: python -m flit install --deps=none
+  number: 1
+  script: FLIT_ROOT_INSTALL=1 {{PYTHON}} -m flit install --deps=none  # [not win]
+  script: {{PYTHON}} -m flit install --deps=none  # [win]
   skip: True  # [py2k]
   entry_points:
     - flit = flit:main
 
 requirements:
-  build:
+  host:
     - python
     - pip
     - docutils
@@ -42,7 +41,8 @@ test:
 
 about:
   home: https://flit.readthedocs.io/
-  license: BSD 3-clause
+  license: BSD-3-Clause
+  license_file: LICENSE
   license_family: BSD
   summary: Simplified packaging of Python modules
 
@@ -51,3 +51,4 @@ extra:
     - Carreau
     - minrk
     - takluyver
+    - ocefpaf
